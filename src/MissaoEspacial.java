@@ -36,3 +36,5 @@ public class MissaoEspacial {
         controle.statusMissao();
     }
 }
+
+//teste
