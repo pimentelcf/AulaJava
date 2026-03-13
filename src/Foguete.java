@@ -6,7 +6,7 @@ public class Foguete {
     private String status;
 
 
-    public Foguete(String nome, float carga) {
+    public Foguete(String nome, float v, float carga, String prontoParaLançamento) {
         this.nome = nome;
         this.cargaMaxima = carga;
         this.combustivelRestante = 0; // Começa vazio
@@ -31,13 +31,14 @@ public class Foguete {
         }
     }
 
-    public void lancar() {
+    public boolean lancar() {
         if (this.combustivelRestante >= 80) {
             this.status = "Em órbita";
             System.out.println(" " + this.nome + " LANÇADO! Rumo ao espaço.");
         } else {
             System.out.println(" Falha no lançamento! Combustível insuficiente (" + this.combustivelRestante + "%)");
         }
+        return false;
     }
 
     public void relatorio() {
@@ -51,11 +52,19 @@ public class Foguete {
 
     public static void main(String[] args) {
         // Criando a instância (o objeto real)
-        Foguete meuFoguete = new Foguete("foguete 123", 50.5f);
+        Foguete meuFoguete = new Foguete("foguete 123", 1000.0f, 50.5f, "Pronto para lançamento");
 
         meuFoguete.relatorio();
         meuFoguete.abastecer(90); // Agora com o sinal corrigido funciona!
         meuFoguete.lancar();
         meuFoguete.relatorio();
+    }
+
+
+    public Object getFog() {
+        return null;
+    }
+
+    public void setStatus(String lançado) {
     }
 }
