@@ -56,7 +56,7 @@ public class Missao_geral {
                 String nome_satelite = input.nextLine().toLowerCase();
 
                 for (Foguete f : lista_foguetes) { //Lançar o foguete
-                    if (nome_foguete.equals(f.getFog())) {
+                    if (f.getFog().equals(nome_foguete)) {
                         if (f.lancar()) {
                             System.out.println("Foguete Lançado");
                             Missao missao = new Missao(nome_satelite, nome_foguete);
@@ -79,4 +79,3 @@ public class Missao_geral {
         }
     }
 }
-

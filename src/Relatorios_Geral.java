@@ -22,7 +22,7 @@ public class Relatorios_Geral{
 
         if(resposta == 2){
             System.out.println("Encerrando programa...");
-            System.exit(0); // mata o programa
+            System.exit(0); // finaliza  o programa
         }
 
         System.out.println("-----------------------------");
@@ -83,3 +83,5 @@ public class Relatorios_Geral{
         }
     }
 }
+
+// encerrando ainda
