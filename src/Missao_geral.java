@@ -26,7 +26,7 @@ class Missao{
         return foguete;
     }
 
-    @Override
+    @Override // e para sobre escrever  o objeto
     public String toString(){
         return "\n-----------\n" + "\nID: " + id + "\nSatelite: " + satelite + "\nFoguete: " + foguete;
     }

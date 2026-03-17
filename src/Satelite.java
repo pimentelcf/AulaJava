@@ -11,7 +11,7 @@ public class Satelite {
         this.nome=nome;
         this.massa=massa;
         this.orbita=orbita;
-        this.energia=energia; //Seria a energia gasta MAX de 100
+        this.energia=energia; //O maximo que aqui tem de energia vai até 100
         this.status=status;
     }
 
@@ -44,7 +44,7 @@ public class Satelite {
         }
     }
 
-    @Override //So colocar um "...println(foguete)" ele vai imprimir bonito
+    @Override //So colocar um "...println(foguete)" ele vai imprimir bem tranquilo
     public String toString(){
         return ("\nNome: " + nome + "\nMassa: " + massa + "\nOrbita: " + orbita +"\nEnergia: " + energia + "\nStatus: " + status);
     }

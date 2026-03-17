@@ -10,11 +10,11 @@ public class Main{
         ArrayList<Satelite> lista_satelites = new ArrayList<>();
         ArrayList<Missao> lista_missao = new ArrayList<>();
 
-        Foguete foguete1 = new Foguete("apollo", 1000.0f, 500.0f, "Pronto para lançamento");
-        Satelite satelite1 = new Satelite("hubble",200f,"Lua",100f,"Lançado");
+        Foguete foguete1 = new Foguete("vitor", 1000.0f, 500.0f, "Pronto para lançamento");
+        Satelite satelite1 = new Satelite("pimentel",200f,"Lua",100f,"Lançado");
 
-        Foguete foguete2 = new Foguete("apollo02", 0f, 500.0f, "Pronto para lançamento");
-        Satelite satelite2 = new Satelite("hubble02",200f,"Lua",100f,"Lançado");
+        Foguete foguete2 = new Foguete("vitor02", 0f, 500.0f, "Pronto para lançamento");
+        Satelite satelite2 = new Satelite("pimentel02",200f,"Lua",100f,"Lançado");
         lista_satelites.add(satelite2);
         lista_satelites.add(satelite1);
 

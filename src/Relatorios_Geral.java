@@ -22,7 +22,7 @@ public class Relatorios_Geral{
 
         if(resposta == 2){
             System.out.println("Encerrando programa...");
-            System.exit(0); // finaliza  o programa
+            System.exit(0); // finalizado  o programaaa
         }
 
         System.out.println("-----------------------------");
@@ -67,7 +67,7 @@ public class Relatorios_Geral{
         double posicao = random.nextDouble() * 360; // graus orbitais
 
         for(Missao m: lista_missao){
-            if(m.getID()== ID){ //Achou o ID então eu tenho os nomes
+            if(m.getID()== ID){ //Achou o ID então vai dar boa na logica
                 System.out.println("Missão encontrada!");
                 for(Satelite s:lista_satelites){
                     if(m.getSat().equals(s.getSat())){
@@ -84,4 +84,3 @@ public class Relatorios_Geral{
     }
 }
 
-// encerrando ainda
