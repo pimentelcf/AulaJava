@@ -71,7 +71,7 @@ public class Missao_geral {
                                 }
                             }
                         } else {
-                            System.out.println("Missão falha! \nPor conta da falta de combustivel");
+                            System.out.println("Missão falhou! \nPor conta da falta de combustivel");
                         }
                     }
                 }

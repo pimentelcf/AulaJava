@@ -21,9 +21,9 @@ public class Main{
         lista_foguetes.add(foguete1);
         lista_foguetes.add(foguete2);
 
-        //Criacao.Mostrar(lista_satelites,lista_foguetes); //Vai mostrar pra criar
+        //Criacao.Mostrar(lista_satelites,lista_foguetes); //Vai mostrar pra criar o objeto na main
 
-        Missao_geral.Missao_Enviar(lista_missao,lista_satelites,lista_foguetes); //Enviar a missão
+        Missao_geral.Missao_Enviar(lista_missao,lista_satelites,lista_foguetes); //Enviar a missão pro foguete decolar
 
         int ID = Relatorios_Geral.Relatorios(lista_missao,lista_satelites,lista_foguetes); //Relatorios
 
