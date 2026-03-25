@@ -1,10 +1,10 @@
-package FolhaSalarial; // 1. O endereço da pasta
+package FolhaSalarial; //  O endereço da pasta
 
-import java.util.Scanner; // 2. O import sempre aqui em cima
+import java.util.Scanner; //  O import sempre aqui em cima
 
-public class MainFolha { // 3. Início da classe
+public class MainFolha { // Início da classe
 
-    public static void main(String[] args) { // 4. Início do método
+    public static void main(String[] args) { //  Início do método
 
         // Criando os objetos necessários
         Scanner leitor = new Scanner(System.in);
