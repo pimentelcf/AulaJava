@@ -1,46 +1,34 @@
-package FolhaSalarial; //  O endereço da pasta
+package FolhaSalarial;
+import java.util.Scanner;
 
-import java.util.Scanner; //  O import sempre aqui em cima
 
-public class MainFolha { // Início da classe
-
-    public static void main(String[] args) { //  Início do método
-
-        // Criando os objetos necessários
+public class MainFolha{
+    public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
-        FolhaSalarial minhaFolha = new FolhaSalarial();
+
+        // 1. Criar os objetos
         Funcionario func1 = new Funcionario();
+        ContratoTrabalho contrato = new ContratoTrabalho();
+        FolhaPagamento folha = new FolhaPagamento();
+        Holerite recibo = new Holerite();
 
-        System.out.print("Digite o seu nome: ");
-        func1.nome = leitor.nextLine(); // leitor.next() pega uma palavra
+        // 2. Executar as ações
+        func1.preencherDados(leitor); // Nome e filhos
 
-        System.out.print("Digite a quantidade de filhos: ");
-        func1.quantidadeDeFilhos = leitor.nextInt(); // leitor.nextInt() pega um número inteiro
-        // USANDO O MÉTODO:
-        func1.mostrarDados();
+        // Passamos o func1 para o contrato saber de quem ele é
+        contrato.lerDadosContrato(leitor, func1); // Valor das horas (R$)
 
-        System.out.println("--- Sistema de Folha Salarial ---");
+        // Lemos as horas do mês (160h, 10h extras, etc)
+        folha.lerDadosPagamento(leitor);
 
-        // O usuário entra com os dados
-        System.out.print("Digite as horas normais: ");
-        double hNormais = leitor.nextDouble();
+        // 3. O Cálculo (A folha usa os dados do contrato)
+        double resultadoFinal = folha.calcularTotal(contrato);
 
-        System.out.print("Digite as horas extras: ");
-        double hExtras = leitor.nextDouble();
-
-        System.out.print("Digite o valor da hora normal: ");
-        double vNormal = leitor.nextDouble();
-
-        System.out.print("Digite o valor da hora extra: ");
-        double vExtra = leitor.nextDouble();
-
-        // Faz o cálculo usando o objeto que criamos lá em cima
-        double resultado = minhaFolha.calcularSalario(hNormais, hExtras, vNormal, vExtra);
-
-        System.out.println("\nCálculo Concluído!");
-        System.out.println("O total a pagar é: R$ " + resultado);
-
+        // 4. Impressão
+        recibo.imprimirRecibo(func1, resultadoFinal);
 
         leitor.close();
+
+        }
     }
-}
+
