@@ -2,13 +2,17 @@ package FolhaSalarial;
 
 import java.util.Scanner;
 
-public class ContratoTrabalho {
+    public class ContratoTrabalho {
+        public Funcionario funcionario;
+        public double valorHoraNormal;
+        public double valorHoraExtra;
 
-    public Funcionario funcionario;
-    public double valorHoraNormal;
-    public double valorHoraExtra;
+        // Metodo criado para saber se o funcionario pode ganhar o adicional caso for "Apto".
+        public boolean temAdicionalFilhos() {
+            return funcionario.possuiFilhos();
+        }
 
-    // Método para preencher os dados do contrato
+    // Metodo para preencher os dados do Funcionario
     public void lerDadosContrato(Scanner leitor, Funcionario f) {
         this.funcionario = f; // Conecta o funcionário a este contrato
 
@@ -18,5 +22,7 @@ public class ContratoTrabalho {
 
         System.out.print("Digite o valor da hora extra: ");
         this.valorHoraExtra = leitor.nextDouble();
+
+
     }
 }

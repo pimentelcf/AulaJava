@@ -1,34 +1,38 @@
 package FolhaSalarial;
+
 import java.util.Scanner;
 
+public class MainFolha {
 
-public class MainFolha{
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
 
-        // 1. Criar os objetos
+        // conectando objetos
         Funcionario func1 = new Funcionario();
         ContratoTrabalho contrato = new ContratoTrabalho();
         FolhaPagamento folha = new FolhaPagamento();
-        Holerite recibo = new Holerite();
 
-        // 2. Executar as ações
-        func1.preencherDados(leitor); // Nome e filhos
 
-        // Passamos o func1 para o contrato saber de quem ele é
-        contrato.lerDadosContrato(leitor, func1); // Valor das horas (R$)
+        // Dados do Funcionário (Nome e Filhos)
+        func1.preencherDados(leitor);
 
-        // Lemos as horas do mês (160h, 10h extras, etc)
-        folha.lerDadosPagamento(leitor);
+        // CONEXÃO DE OBJETOS: Passamos o objeto 'func1' para dentro do 'contrato'.
+        // Isso permite que o contrato "saiba" quem é o funcionário dono dele,
+        // possibilitando consultar a quantidade de filhos para o bônus mais tarde.
+        contrato.lerDadosContrato(leitor, func1);
 
-        // 3. O Cálculo (A folha usa os dados do contrato)
-        double resultadoFinal = folha.calcularTotal(contrato);
+        // Dados do Mês (Horas trabalhadas)
+        System.out.println("\n--- Registro de Horas do Mês ---");
+        System.out.print("Digite a quantidade de horas normais: ");
+        double hNormais = leitor.nextDouble();
 
-        // 4. Impressão
-        recibo.imprimirRecibo(func1, resultadoFinal);
+        System.out.print("Digite a quantidade de horas extras: ");
+        double hExtras = leitor.nextDouble();
+
+        Holerite meuHolerite = folha.calcularSalario(contrato, hNormais, hExtras);
+
+        meuHolerite.imprimir();
 
         leitor.close();
-
-        }
     }
-
+}

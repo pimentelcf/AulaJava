@@ -1,25 +1,26 @@
 package FolhaSalarial;
-import java.util.Scanner;
 
 public class FolhaPagamento {
-    public double horasNormaisTrabalhadas;
-    public double horasExtrasTrabalhadas;
 
-    // Método para ler o que aconteceu no mês
-    public void lerDadosPagamento(Scanner leitor) {
-        System.out.println("\n--- Registro do Mês ---");
-        System.out.print("Digite as horas normais trabalhadas: ");
-        this.horasNormaisTrabalhadas = leitor.nextDouble();
+    public Holerite calcularSalario(ContratoTrabalho contrato, double horasN, double horasE) {
+        //  Criamos o objeto que será retornado
+        Holerite h = new Holerite();
+        h.funcionario = contrato.funcionario;
 
-        System.out.print("Digite as horas extras trabalhadas Esse Mês: ");
-        this.horasExtrasTrabalhadas = leitor.nextDouble();
-    }
+        //  Cálculos base
+        h.valorTotalHorasNormais = horasN * contrato.valorHoraNormal;
+        h.valorTotalHorasExtras = horasE * contrato.valorHoraExtra;
 
-    // Método que calcula tudo recebendo o ContratoTrabalho
-    public double calcularTotal(ContratoTrabalho contrato) {
-        double totalNormal = this.horasNormaisTrabalhadas * contrato.valorHoraNormal;
-        double totalExtra = this.horasExtrasTrabalhadas * contrato.valorHoraExtra;
+        //  Regra do Adicional de 10%
+        double subtotal = h.valorTotalHorasNormais + h.valorTotalHorasExtras;
+        if (contrato.temAdicionalFilhos()) {
+            h.valorAdicionalFilhos = subtotal * 0.10;  // bonus dos 10 %
+        } else {
+            h.valorAdicionalFilhos = 0; // caso cair na condição de o funcionario não possui filhos 0% de adicional no bonus
+        }
+        // unica condicional feita no projeto
 
-        return totalNormal + totalExtra;
+        // Retorna o OBJETO inteiro
+        return h;
     }
 }
