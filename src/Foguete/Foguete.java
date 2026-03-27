@@ -1,3 +1,5 @@
+package Foguete;
+
 public class Foguete {
 
     private String nome;

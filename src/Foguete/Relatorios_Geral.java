@@ -1,3 +1,5 @@
+package Foguete;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
@@ -59,7 +61,7 @@ public class Relatorios_Geral{
         }
     }
 
-    public static void Dados(ArrayList<Missao>lista_missao,ArrayList<Satelite>lista_satelites,int ID){
+    public static void Dados(ArrayList<Missao>lista_missao, ArrayList<Satelite>lista_satelites, int ID){
         Random random = new Random();
 
         double temperatura = -150 + (random.nextDouble() * 200); // -150 até +50

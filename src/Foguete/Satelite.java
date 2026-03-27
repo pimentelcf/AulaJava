@@ -1,3 +1,5 @@
+package Foguete;
+
 public class Satelite {
 
     private String nome;

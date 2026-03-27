@@ -1,3 +1,5 @@
+package Foguete;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,7 +30,7 @@ class Missao{
 
     @Override // e para sobre escrever  o objeto
     public String toString(){
-        return "\n-----------\n" + "\nID: " + id + "\nSatelite: " + satelite + "\nFoguete: " + foguete;
+        return "\n-----------\n" + "\nID: " + id + "\nFoguete.Satelite: " + satelite + "\nFoguete.Foguete: " + foguete;
     }
 }
 public class Missao_geral {
@@ -58,7 +60,7 @@ public class Missao_geral {
                 for (Foguete f : lista_foguetes) { //Lançar o foguete
                     if (f.getFog().equals(nome_foguete)) {
                         if (f.lancar()) {
-                            System.out.println("Foguete Lançado");
+                            System.out.println("Foguete.Foguete Lançado");
                             Missao missao = new Missao(nome_satelite, nome_foguete);
                             lista_missao.add(missao);
                             System.out.println("\u001B[32mMissão enviada!\u001B[0m" + "\n\u001B[33mID: " + missao.getID() + "\u001B[0m");
