@@ -1,36 +1,82 @@
 package ConsultórioMédico;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // 1. Instanciamos o Gerenciador (o motor do sistema)
+        Scanner leitor = new Scanner(System.in);
         GerenciadorFila gerenciador = new GerenciadorFila();
+        Atendimento atendimentoAtual = null;
+        int opcao = 0;
 
-        // 2. Criamos um Paciente
-        Paciente p1 = new Paciente(1, "Vitor Pimentel", "123.456.789-00");
+        while (opcao != 5) {
+            System.out.println("\n========= SISTEMA CONSULTÓRIO =========");
+            System.out.println("1. Gerar Senha");
+            System.out.println("2. Chamar Paciente e Iniciar Atendimento");
+            System.out.println("3. Registrar Próxima Etapa Clínica");
+            System.out.println("4. Finalizar Atendimento");
+            System.out.println("5. Sair");
+            System.out.print("Escolha: ");
+            opcao = leitor.nextInt();
+            leitor.nextLine();
 
-        // 3. GERAR SENHA (Registro de Horário de Entrada)
-        System.out.println("--- Recepção: Gerando Senha ---");
-        gerenciador.gerarNovaSenha(101); // Senha nº 101
+            switch (opcao) {
+                case 1:
+                    System.out.print("Número da senha: ");
+                    gerenciador.gerarNovaSenha(leitor.nextInt());
+                    break;
 
-        System.out.println("\n--- Painel: Chamando Paciente ---");
-        // 4. INICIAR ATENDIMENTO (Tira da fila e vincula ao Paciente)
-        Atendimento atendimentoJoao = gerenciador.chamarProximo(p1);
+                case 2:
+                    if (atendimentoAtual != null) {
+                        System.out.println("ERRO: Finalize o atendimento anterior primeiro!");
+                        break;
+                    }
+                    System.out.print("Nome do Paciente: ");
+                    String nome = leitor.nextLine();
 
-        if (atendimentoJoao != null) {
-            // 5. REGISTRAR PROCEDIMENTOS (Com horários automáticos)
-            System.out.println("\n--- Iniciando Procedimentos Clínicos ---");
+                    // --- VALIDAÇÃO DE CPF ---
+                    String cpf = "";
+                    while (cpf.length() != 11) {
+                        System.out.print("CPF (digite exatamente 11 números): ");
+                        cpf = leitor.nextLine().replaceAll("\\D", ""); // Remove letras/pontos
+                        if (cpf.length() != 11) {
+                            System.out.println("CPF inválido! O CPF deve conter 11 dígitos.");
+                        }
+                    }
 
-            atendimentoJoao.registrarNovaEtapa("começando a espera");
-            // Simulando um pequeno delay ou intervalo entre etapas
-            atendimentoJoao.registrarNovaEtapa("Consulta Médica");
-            atendimentoJoao.registrarNovaEtapa("Exame de Sangue");
-            atendimentoJoao.registrarNovaEtapa("Retorno Consulta");
+                    Paciente p = new Paciente(1, nome, cpf);
+                    atendimentoAtual = gerenciador.chamarProximo(p);
+                    break;
 
-            // 6. FINALIZAR SENHA
-            atendimentoJoao.senha.finalizar();
-            System.out.println("\nStatus Final da Senha: " + atendimentoJoao.senha.status);
+                case 3:
+                    if (atendimentoAtual == null) {
+                        System.out.println("Não há ninguém sendo atendido.");
+                        break;
+                    }
+
+
+                    System.out.println("Selecione a etapa: 1-Triagem | 2-Consulta | 3-Exames");
+                    int escolhaEtapa = leitor.nextInt();
+                    leitor.nextLine();
+
+                    String nomeEtapa = "";
+                    if(escolhaEtapa == 1) nomeEtapa = "Triagem";
+                    else if(escolhaEtapa == 2) nomeEtapa = "Consulta";
+                    else if(escolhaEtapa == 3) nomeEtapa = "Exames";
+                    else { System.out.println("Opção inválida!"); break; }
+
+                    atendimentoAtual.registrarNovaEtapa(nomeEtapa);
+                    break;
+
+                case 4:
+                    if (atendimentoAtual != null) {
+                        atendimentoAtual.senha.finalizar();
+                        System.out.println("Atendimento de " + atendimentoAtual.paciente.nome + " encerrado.");
+                        atendimentoAtual = null;
+                    }
+                    break;
+            }
         }
-
-        System.out.println("\n--- Sistema: Atendimento de " + p1.nome + " concluído ---");
+        leitor.close();
     }
 }
